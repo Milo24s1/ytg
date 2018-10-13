@@ -63,3 +63,7 @@ module.exports.getChannelVideos = function (searchParams,sortParams,callback) {
 module.exports.deleteEventVideoList = function (searchParams,callback) {
     EventVideo.findOneAndRemove(searchParams,callback);
 };
+
+module.exports.deleteEventVideosByVideoId = function (deleteIdList,callback) {
+    EventVideo.deleteMany({_id: {$in: deleteIdList}},callback);
+};

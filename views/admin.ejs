@@ -135,7 +135,7 @@
             <div class="modal-footer">
                 <a type="button" id="deleteURL" class="btn btn-danger  waves-effect waves-light">Delete
                 </a>
-                <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
+                <a type="button" id="deleteURLCancel" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
             </div>
         </div>
         <!--/.Content-->
@@ -225,7 +225,11 @@
             var videoAddressList = [];
             var nodes= document.querySelectorAll("#addUrl input[class='form-control']");
             for(i=0;i<nodes.length;i++){
-                videoAddressList.push(nodes[i].value)
+                //TODO add youtube regex here;
+                if(nodes[i].value!=''){
+                    videoAddressList.push(nodes[i].value);
+                }
+
             }
 
             document.querySelector('[data-dismiss="modal"]').click();
@@ -304,6 +308,38 @@
                     }
                 }
 
+            });
+        });
+
+        $("#deleteURL").click(function (e) {
+
+            var tobeDeleted = [];
+            document.querySelector('#deleteURLCancel').click();
+            $("#viewUrls input[type='checkbox']").each(function (index) {
+                if($(this).prop('checked')){
+                    console.log($(this).data('eventvideoid'));
+                    tobeDeleted.push($(this).data('eventvideoid'));
+                }
+            });
+
+            $.ajax({
+                url:'/deleteEventVideo',
+                method:'POST',
+                dataType:'json',
+                data:{
+                    deleteIDList : tobeDeleted
+                },
+                success: function (data) {
+                    // $("#loader").addClass('invisible');
+                    alert('Deleted Successfully');
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    if(xhr.status!=200) {
+                        // $("#loader").addClass('invisible');
+                        alert('Something went wrong with Deleting URL, pleas refresh the page and try again');
+                    }
+                }
             });
         });
 

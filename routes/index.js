@@ -37,6 +37,9 @@ router.get('/channel/:id',function (req,res) {
 router.post('/addEventVideo',(req,res,next)=>{
     EventVideoController.addEventVideoToDatabase(req,res);
 });
+router.post('/deleteEventVideo',(req,res,next)=>{
+    EventVideoController.deleteEventVideo(req,res);
+});
 
 router.post('/getEventVideo',(req,res,next)=>{
     EventVideoController.getEventVideoList(req,res);

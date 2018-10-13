@@ -9,6 +9,7 @@ EventVideoController.addEventVideoToDatabase =  async function(req,res){
     try {
         const urlList= req.body.url;
         for (let url of urlList){
+            console.log(url);
             const tempVideo = await fetchYoutubeVideoInfo(url);
             tempVideo.eventId = req.body.eventId;
             tempVideo.url = url;
@@ -28,6 +29,28 @@ EventVideoController.addEventVideoToDatabase =  async function(req,res){
         console.log(e);
         res.status(400).send({});
     }
+};
+
+EventVideoController.deleteEventVideo = function(req,res){
+
+    const idArray = req.body.deleteIDList;
+    console.log(idArray);
+    try {
+        EventVideo.deleteEventVideosByVideoId(idArray,function (err,data) {
+            if(err){
+                res.status(400).send({'err':err});
+            }
+            else {
+                res.status(200).send({});
+            }
+        });
+    }
+    catch (e) {
+        console.log(e);
+        res.status(500).send({'err':e});
+    }
+
+
 };
 
 EventVideoController.getEventVideoList = function(req,res){
