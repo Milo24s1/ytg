@@ -93,11 +93,12 @@
                 <form class="needs-validation" novalidate>
                     <div class="md-form">
                         <i class="fa fa-youtube prefix"></i>
-                        <input type="text" id="inputIconEx1" class="form-control" value="" required>
-                        <label for="inputIconEx1">Video URL</label>
+                        <textarea class="form-control" id="inputIconEx1" rows="7"></textarea>
+                        <!--<input type="text" id="inputIconEx1" class="form-control" value="" required>-->
+                        <label for="inputIconEx1">Add Video URL(S)</label>
                     </div>
                 </form>
-                <p class="font-weight-bold" id="addAnotherVideo">Add Another Video&nbsp;<i class="fa fa-plus-circle fa-4x mb-3 cyan-text" aria-hidden="true"></i> </p>
+                <!--<p class="font-weight-bold" id="addAnotherVideo">Add Another Video&nbsp;<i class="fa fa-plus-circle fa-4x mb-3 cyan-text" aria-hidden="true"></i> </p>-->
             </div>
 
             <!--Footer-->
@@ -223,11 +224,11 @@
 
 
             var videoAddressList = [];
-            var nodes= document.querySelectorAll("#addUrl input[class='form-control']");
+            var nodes= $("#inputIconEx1").val().split("\n");
             for(i=0;i<nodes.length;i++){
                 //TODO add youtube regex here;
-                if(nodes[i].value!=''){
-                    videoAddressList.push(nodes[i].value);
+                if(nodes[i]!=''){
+                    videoAddressList.push(nodes[i]);
                 }
 
             }
@@ -244,7 +245,7 @@
                 },
                 success: function (data) {
                     $("#loader").addClass('invisible');
-                    alert('Added Successfully')
+                    alert('Added to the Processing Queue, it may take sometime to crawl the data')
 
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
