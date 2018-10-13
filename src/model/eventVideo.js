@@ -7,22 +7,22 @@ EventVideoController.addEventVideoToDatabase =  async function(req,res){
 
     res.status(200).send({});
     try {
-        console.log('Response sent');
-        const tempVideo = await fetchYoutubeVideoInfo(req.body.url);
-        tempVideo.eventId = req.body.eventId;
-        tempVideo.url = req.body.url;
-        console.log(tempVideo);
-        const newEventVideo = EventVideo(tempVideo);
-        EventVideo.addEventVideo(newEventVideo,function (err,event) {
+        const urlList= req.body.url;
+        for (let url of urlList){
+            const tempVideo = await fetchYoutubeVideoInfo(url);
+            tempVideo.eventId = req.body.eventId;
+            tempVideo.url = url;
+            const newEventVideo = EventVideo(tempVideo);
+            EventVideo.addEventVideo(newEventVideo,function (err,event) {
 
-            if(err){
-                console.log(err);
-                // res.status(400).send({});
-            }
-            else {
-                // res.status(200).send({});
-            }
-        });
+                if(err){
+                    console.log(err);
+                }
+                else {
+                }
+            });
+        }
+
     }
     catch (e) {
         console.log(e);
@@ -150,6 +150,37 @@ EventVideoController.getChannelVideoList = function(req,res){
 
 
 function fetchYoutubeVideoInfo(url) {
+    const tempVideo = {};
+
+    return new Promise(function (resolve,reject) {
+
+        try {
+            fetchVideoInfo(url.substr(url.length-11)).then(function (videoInfo) {
+
+                tempVideo.videoId = videoInfo.videoId;
+                tempVideo.owner = videoInfo.owner;
+                tempVideo.channelId = videoInfo.channelId;
+                tempVideo.title = videoInfo.title;
+                tempVideo.description = videoInfo.description;
+                tempVideo.views = videoInfo.views;
+                tempVideo.comments = videoInfo.commentCount;
+                tempVideo.likes = videoInfo.likeCount;
+                tempVideo.dislikes = videoInfo.dislikeCount;
+                tempVideo.releaseDate = videoInfo.datePublished;
+                tempVideo.addedDate = moment();
+
+                resolve(tempVideo);
+            });
+        }
+        catch (e) {
+            console.log(e);
+            resolve(tempVideo);
+        }
+
+    });
+}
+
+function fetchYoutubeVideoInfoAsync(url) {
     const tempVideo = {};
 
     return new Promise(function (resolve,reject) {
