@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>YTGallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+
+
+</head>
+<body>
+<nav class="navbar navbar-dark ">
+    <a class="navbar-brand" href="/">
+        <div class="logo">YTGallery</div>
+    </a>
+    <!--<a href="add"><button id="addButton" type="button" class="btn  btn-lg orange">Add Token</button></a>-->
+</nav>
+
+<div style="height: 10vh">
+</div>
+<div style="height: 10vh">
+    <div class="text-center ">
+        <h1 class="animated fadeIn mb-4 font-weight-bold shadow-sm"><%=event.eventName%>-<%=event.year%></h1>
+
+    </div>
+
+</div>
+<div>
+    <label class="font-weight-bold">SORT BY</label>
+    <select>
+        <option value="0">---</option>
+        <option value="1">Release date (oldest)</option>
+        <option value="2">Release date (newset)</option>
+        <option value="3">Most Likes</option>
+        <option value="4">Least Likes</option>
+        <option value="5">Most Dislikes</option>
+        <option value="6">Least Dislikes</option>
+        <option value="7">Most Views</option>
+        <option value="8">Least Views</option>
+    </select>
+    <input id="currentEventId" type="hidden" value="<%= event._id%>">
+</div>
+
+<div class="row content ">
+    <div class="col-md-1 cyan" ></div>
+    <div class="col-md-10 green">
+
+        <% for(var i=0;i<videos.length;i++){
+            var left = videos[i];
+            var mid = videos[i+1];
+            var right = videos[i+2];
+            i=i+2;
+        %>
+        <div class="row" style="margin-top: 9px;">
+            <div class="col-md-4 event-item" >
+                <%if(left != undefined){%>
+
+                <iframe width="420" height="345" src="https://www.youtube.com/embed/<%=left.url.substr(left.url.length-11)%>">
+                </iframe>
+                <!--<img src="https://img.youtube.com/vi/<%=  left.url.substr(left.url.length-11) %>/0.jpg" style="width: 246px;" />-->
+                <p class="font-weight-bold"><%= left.title%></p>
+                <div><%- left.description%></div>
+                <span ><%=left.likes%><i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
+                <span ><%=left.dislikes%><i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
+                <span ><%=left.comments%><i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
+                <span ><%=left.views%><i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>
+                <%}%>
+            </div>
+            <div class="col-md-4 event-item purple" >
+                <%if(mid !== undefined){%>
+                <!--<img src="https://img.youtube.com/vi/<%=  mid.url.substr(mid.url.length-11) %>/0.jpg" style="width: 246px;" />-->
+                <iframe width="420" height="345" src="https://www.youtube.com/embed/<%=mid.url.substr(mid.url.length-11)%>">
+                </iframe>
+                <p class="font-weight-bold"><%= mid.title%></p>
+                <p><%- mid.description%></p>
+                <span ><%=mid.likes%><i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
+                <span ><%=mid.dislikes%><i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
+                <span ><%=mid.comments%><i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
+                <span ><%=mid.views%><i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>
+                <%}%>
+            </div>
+            <div class="col-md-4 event-item orange" >
+                <%if(right != undefined){%>
+                <!--<img src="https://img.youtube.com/vi/<%=  right.url.substr(right.url.length-11) %>/0.jpg" style="width: 246px;" />-->
+                <iframe  src="https://www.youtube.com/embed/<%=right.url.substr(right.url.length-11)%>">
+                </iframe>
+                <p class="font-weight-bold"><%=right.title%>></p>
+                <p><%- right.description%></p>
+                <span ><%=right.likes%><i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
+                <span ><%=right.dislikes%><i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
+                <span ><%=right.comments%><i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
+                <span ><%=right.views%><i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>
+                <%}%>
+            </div>
+        </div>
+
+        <%}%>
+    </div>
+    <div class="col-md-1 pink"></div>
+</div>
+
+
+
+<div style="height: 10vh">
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small ">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="/">  ytgallery.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
+
+<script>
+    $(window).bind("load", function() {
+       // $('body').removeClass('preloader');
+    });
+
+    $(document).ready(function (e) {
+
+        var currentEventId = $("#currentEventId").val();
+
+
+        $('select').on('change', function() {
+            if(this.value>0){
+
+                $.ajax({
+
+                    'url':'/getEventVideo',
+                    'method':'POST',
+                    dataType: 'JSON',
+                    data: {
+                        sort : this.value,
+                        eventId: currentEventId
+                    },
+                    success: function (data) {
+
+                        var videos = data;
+                        var sortedContentDom = ``;
+                        for(var i=0;i<videos.length;i++){
+                            var left = videos[i];
+                            var mid = videos[i+1];
+                            var right = videos[i+2];
+                            i=i+2;
+
+                            sortedContentDom +=
+                                `<div class="row" style="margin-top: 9px;">
+                                    <div class="col-md-4 event-item red" >`;
+
+                            if(left != undefined){
+                                sortedContentDom += `<iframe width="420" height="345" src="https://www.youtube.com/embed/${left.videoId}">
+                                        </iframe>
+                                        <!--<img src="https://img.youtube.com/vi/${left.url.substr(left.url.length-11) }/0.jpg" style="width: 246px;" />-->
+                                        <p class="font-weight-bold">${left.title}</p>
+                                        <p>${left.description}</p>
+                                        <span >${left.likes}<i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
+                                        <span >${left.dislikes}<i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
+                                        <span >${left.comments}<i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
+                                        <span >${left.views}<i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>              `;
+                            }
+
+                            sortedContentDom += `</div>
+                                                <div class="col-md-4 event-item purple" >`;
+
+
+                if(mid !== undefined){
+                    sortedContentDom += `<iframe width="420" height="345" src="https://www.youtube.com/embed/${mid.videoId}">
+                </iframe>
+                <p class="font-weight-bold">${mid.title}</p>
+                <p>${mid.description}</p>
+                <span >${mid.likes}<i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
+                <span >${mid.dislikes}<i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
+                <span >${mid.comments}<i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
+                <span >${mid.views}<i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>`;
+                }
+
+                            sortedContentDom += `</div>
+                                                <div class="col-md-4 event-item orange" >`;
+
+                if(right != undefined){
+                    sortedContentDom += `
+                <iframe  src="https://www.youtube.com/embed/${right.videoId}">
+                </iframe>
+                <p class="font-weight-bold">${right.title}</p>
+                <p>${right.description}</p>
+                <span >${right.likes}<i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
+                <span >${right.dislikes}<i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
+                <span >${right.comments}<i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
+                <span >${right.views}<i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>`;
+                }
+
+                            sortedContentDom += `</div></div>`;
+
+
+
+
+                        } // end of for loop
+
+                        $(".col-md-10").html(sortedContentDom);
+
+
+
+
+
+
+
+
+                    },
+                    error: function(xhr){
+
+                    }
+                });
+
+            }
+
+
+        });
+
+    });
+</script>
+<style>
+    .preloader {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        background: #333 url('http://files.mimoymima.com/images/loading.gif') no-repeat center center;
+    }
+
+    .content {
+        /*background-color:green;*/
+        margin: 10px;
+        /*color:white;*/
+        text-align:center;
+    }
+
+    .event-item > iframe {
+        width: 246px;
+        height: 184.5px;
+    }
+</style>
+</body>
