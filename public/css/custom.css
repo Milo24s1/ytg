@@ -1,0 +1,18 @@
+body{
+    font-family: 'Poppins', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+footer ,thead, nav{
+    background-color: #020843 !important;
+}
+
+.logo{
+    height: 44px;
+    color: rgb(249, 162, 34);
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgb(249, 162, 34);
+}
+
