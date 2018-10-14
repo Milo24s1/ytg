@@ -39,16 +39,17 @@ async function fetchVideos(uniqueUrls){
 
                     //check and close connection
                     if(err){
-                        console.log('updating failed');
+                        console.log('updating failed for '+u+' video at'+moment());
                     }
                     else {
-                        console.log('Successfully updated');
+                        console.log('Successfully updated'+u+' video at'+moment());
                     }
 
                     operationCount--;
 
                     if(operationCount==0){
                         mongoose.disconnect();
+                        console.log('Crawling Finished Successfully at '+moment().format('YYYY-mm-dd'));
                     }
 
 
@@ -74,7 +75,7 @@ async function run() {
                 console.log('Crawling fail at '+moment().format('YYYY-mm-dd'));
             }
             else {
-
+                console.log('Crawling Started at '+moment().format('YYYY-mm-dd'));
                 const a = videoList.map(v => v.videoId);
                 const uniqueUrls = [... new Set(a)];
                 console.log(uniqueUrls);
