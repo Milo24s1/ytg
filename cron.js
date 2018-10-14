@@ -39,17 +39,17 @@ async function fetchVideos(uniqueUrls){
 
                     //check and close connection
                     if(err){
-                        console.log('updating failed for '+u+' video at'+moment().format("YYYY-MM-DD HH:mm:ss"););
+                        console.log('updating failed for '+u+' video at'+moment().format("YYYY-MM-DD HH:mm:ss"));
                     }
                     else {
-                        console.log('Successfully updated'+u+' video at'+moment().format("YYYY-MM-DD HH:mm:ss"););
+                        console.log('Successfully updated'+u+' video at'+moment().format("YYYY-MM-DD HH:mm:ss"));
                     }
 
                     operationCount--;
 
                     if(operationCount==0){
                         mongoose.disconnect();
-                        console.log('Crawling Finished Successfully at '+moment().format("YYYY-MM-DD HH:mm:ss"););
+                        console.log('Crawling Finished Successfully at '+moment().format("YYYY-MM-DD HH:mm:ss"));
                     }
 
 
@@ -72,10 +72,10 @@ async function run() {
         EventVideo.getEventVideoList({},{},function (err,videoList) {
 
             if(err){
-                console.log('Crawling fail at '+moment().format("YYYY-MM-DD HH:mm:ss"););
+                console.log('Crawling fail at '+moment().format("YYYY-MM-DD HH:mm:ss"));
             }
             else {
-                console.log('Crawling Started at '+moment().format("YYYY-MM-DD HH:mm:ss"););
+                console.log('Crawling Started at '+moment().format("YYYY-MM-DD HH:mm:ss"));
                 const a = videoList.map(v => v.videoId);
                 const uniqueUrls = [... new Set(a)];
                 console.log(uniqueUrls);
