@@ -65,7 +65,7 @@
             <div class="col-md-4 event-item" >
                 <%if(left != undefined){%>
 
-                <iframe width="420" height="345" src="https://www.youtube.com/embed/<%=left.url.substr(left.url.length-11)%>">
+                <iframe allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/<%=left.url.substr(left.url.length-11)%>">
                 </iframe>
                 <!--<img src="https://img.youtube.com/vi/<%=  left.url.substr(left.url.length-11) %>/0.jpg" style="width: 246px;" />-->
                 <p class="font-weight-bold"><%= left.title%></p>
@@ -79,7 +79,7 @@
             <div class="col-md-4 event-item grey" >
                 <%if(mid !== undefined){%>
                 <!--<img src="https://img.youtube.com/vi/<%=  mid.url.substr(mid.url.length-11) %>/0.jpg" style="width: 246px;" />-->
-                <iframe width="420" height="345" src="https://www.youtube.com/embed/<%=mid.url.substr(mid.url.length-11)%>">
+                <iframe allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/<%=mid.url.substr(mid.url.length-11)%>">
                 </iframe>
                 <p class="font-weight-bold"><%= mid.title%></p>
                 <p><%- mid.description%></p>
@@ -92,7 +92,7 @@
             <div class="col-md-4 event-item orange" >
                 <%if(right != undefined){%>
                 <!--<img src="https://img.youtube.com/vi/<%=  right.url.substr(right.url.length-11) %>/0.jpg" style="width: 246px;" />-->
-                <iframe  src="https://www.youtube.com/embed/<%=right.url.substr(right.url.length-11)%>">
+                <iframe  allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/<%=right.url.substr(right.url.length-11)%>">
                 </iframe>
                 <p class="font-weight-bold"><%=right.title%>></p>
                 <p><%- right.description%></p>
@@ -172,7 +172,7 @@
                                     <div class="col-md-4 event-item red" >`;
 
                             if(left != undefined){
-                                sortedContentDom += `<iframe width="420" height="345" src="https://www.youtube.com/embed/${left.videoId}">
+                                sortedContentDom += `<iframe allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/${left.videoId}">
                                         </iframe>
                                         <!--<img src="https://img.youtube.com/vi/${left.url.substr(left.url.length-11) }/0.jpg" style="width: 246px;" />-->
                                         <p class="font-weight-bold">${left.title}</p>
@@ -188,7 +188,7 @@
 
 
                 if(mid !== undefined){
-                    sortedContentDom += `<iframe width="420" height="345" src="https://www.youtube.com/embed/${mid.videoId}">
+                    sortedContentDom += `<iframe allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/${mid.videoId}">
                 </iframe>
                 <p class="font-weight-bold">${mid.title}</p>
                 <p>${mid.description}</p>
@@ -203,7 +203,7 @@
 
                 if(right != undefined){
                     sortedContentDom += `
-                <iframe  src="https://www.youtube.com/embed/${right.videoId}">
+                <iframe  allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/${right.videoId}">
                 </iframe>
                 <p class="font-weight-bold">${right.title}</p>
                 <p>${right.description}</p>
