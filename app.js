@@ -9,7 +9,8 @@ const indexRouter = require('./routes/index');
 
 
 const app = express();
-const port = process.env.PORT || 9999;
+// const port = process.env.PORT || 9999;
+const port = 8080;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
