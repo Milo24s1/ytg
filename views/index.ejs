@@ -52,9 +52,12 @@
                         %>
 
                         <li>
+                            <div class="main card">
+                                <div class="holder">
                             <!--<img src="https://img.youtube.com/vi/<%=  eventVideos[j].url.substr(eventVideos[j].url.length-11) %>/0.jpg" style="width: 246px;" />-->
                             <iframe  allowfullscreen width="246px" src="https://www.youtube.com/embed/<%=  eventVideos[j].videoId%>">
                             </iframe>
+                                    <div class="bar">
                             <p class="font-weight-bold"><%=eventVideos[j].title%></p>
                             <!--<p class="text-truncate"><%- eventVideos[j].description%></p>-->
                             <span ><%=eventVideos[j].likes%><i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
@@ -62,6 +65,8 @@
                             <span ><%=eventVideos[j].comments%><i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
                             <span ><%=eventVideos[j].views%><i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>
                             <a href="/channel/<%=eventVideos[j].channelId%>"><%=eventVideos[j].owner%></a>
+                                    </div>
+                                </div></div>
                         </li>
                         <% }} %>
                     </ul>
@@ -116,6 +121,11 @@
             end: function(slider){
 
             }
+        });
+
+        $(".ytp-title-channel-logo").click(function (e) {
+            e.preventDefault();
+            window.location = '/channel/'+$(this).href.split('channel/')[1];
         });
 
     });

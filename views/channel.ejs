@@ -20,15 +20,15 @@
 </head>
 <body>
 <nav class="navbar navbar-dark ">
-    <a class="navbar-brand" href="/">
-        <div class="logo">YTGallery</div>
-    </a>
-    <!--<a href="add"><button id="addButton" type="button" class="btn  btn-lg orange">Add Token</button></a>-->
+    <!--<a class="navbar-brand" href="/">-->
+        <!--<div class="logo">YTGallery</div>-->
+    <!--</a>-->
+    <a  class="float-right" href="/"><img src="/img/logo.png" height="55px"></a>
 </nav>
 
 <div style="height: 10vh">
 </div>
-<div style="height: 10vh">
+<div >
     <div class="text-center ">
         <h1 class="animated fadeIn mb-4 font-weight-bold shadow-sm"><%=videos[0].owner%> Videos</h1>
 
@@ -64,7 +64,7 @@
         <div class="row" style="margin-top: 9px;">
             <div class="col-md-4 event-item" >
                 <%if(left != undefined){%>
-                <div class="main">
+                <div class="main card">
                     <div class="holder">
                         <iframe allowfullscreen  src="https://www.youtube.com/embed/<%=left.url.substr(left.url.length-11)%>">
                         </iframe>
@@ -83,7 +83,7 @@
             </div>
             <div class="col-md-4 event-item " >
                 <%if(mid !== undefined){%>
-                <div class="main">
+                <div class="main card">
                     <div class="holder">
                         <iframe allowfullscreen  src="https://www.youtube.com/embed/<%=mid.url.substr(mid.url.length-11)%>">
                         </iframe>
@@ -101,7 +101,7 @@
             </div>
             <div class="col-md-4 event-item " >
                 <%if(right != undefined){%>
-                <div class="main">
+                <div class="main card">
                     <div class="holder">
                         <!--<img src="https://img.youtube.com/vi/<%=  right.url.substr(right.url.length-11) %>/0.jpg" style="width: 246px;" />-->
                         <iframe  allowfullscreen  src="https://www.youtube.com/embed/<%=right.url.substr(right.url.length-11)%>">
@@ -271,9 +271,7 @@
     }
 
     .content {
-        /*background-color:green;*/
         margin: 10px;
-        /*color:white;*/
         text-align:center;
     }
 
@@ -283,7 +281,7 @@
     }
     .main{
         position: relative;
-        box-shadow: 5px 5px 5px 5px rgba(0,0,0,.75);
+        /*box-shadow: 5px 5px 5px 5px rgba(0,0,0,.75);*/
         border-radius: 12px;
         /*rgba(235,68,93,.75)*/
 
@@ -310,12 +308,13 @@
         width:100%;
         height:30px;
         opacity: 0.75;
-        background-color: black;
+        background-image: linear-gradient(to top, rgba(95,186,125,0.9) 0%, rgba(235,68,93,.75) 100%);
         color: white;
         font-size: 12px;
         font-weight: bolder;
         border-bottom-right-radius: 12px;
         border-bottom-left-radius: 12px;
     }
+
 </style>
 </body>
