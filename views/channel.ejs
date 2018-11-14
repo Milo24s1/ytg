@@ -61,16 +61,13 @@
             var right = videos[i+2];
             i=i+2;
         %>
-        <div class="row" style="margin-top: 9px;">
+        <div class="row" style="">
             <div class="col-md-4 event-item" >
                 <%if(left != undefined){%>
                 <div class="main card">
                     <div class="holder">
                         <iframe allowfullscreen  src="https://www.youtube.com/embed/<%=left.url.substr(left.url.length-11)%>">
                         </iframe>
-                        <!--<img src="https://img.youtube.com/vi/<%=  left.url.substr(left.url.length-11) %>/0.jpg" style="width: 246px;" />-->
-                        <!--<p class="font-weight-bold"><%= left.title%></p>-->
-                        <!--<div><%- left.description%></div>-->
                         <div class="bar">
                             <span ><%=left.likes%><i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
                             <span ><%=left.dislikes%><i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
@@ -87,8 +84,6 @@
                     <div class="holder">
                         <iframe allowfullscreen  src="https://www.youtube.com/embed/<%=mid.url.substr(mid.url.length-11)%>">
                         </iframe>
-                        <!--<p class="font-weight-bold"><%= mid.title%></p>-->
-                        <!--<p><%- mid.description%></p>-->
                         <div class="bar">
                             <span ><%=mid.likes%><i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
                             <span ><%=mid.dislikes%><i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
@@ -103,15 +98,12 @@
                 <%if(right != undefined){%>
                 <div class="main card">
                     <div class="holder">
-                        <!--<img src="https://img.youtube.com/vi/<%=  right.url.substr(right.url.length-11) %>/0.jpg" style="width: 246px;" />-->
                         <iframe  allowfullscreen  src="https://www.youtube.com/embed/<%=right.url.substr(right.url.length-11)%>">
                         </iframe>
-                        <!--<p class="font-weight-bold"><%=right.title%>></p>-->
-                        <!--<p><%- right.description%></p>-->
                         <div class="bar">
-                            <span ><%=right.likes%><i class="fa fa-thumbs-up fa-1x white-text pr-3"></i></span>
-                            <span ><%=right.dislikes%><i class="fa fa-thumbs-down fa-1x  white-text pr-3"></i></span>
-                            <span ><%=right.comments%><i class="fa fa-comment white-text fa-1x  pr-3"></i></span>
+                            <span ><%=right.likes%><i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
+                            <span ><%=right.dislikes%><i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
+                            <span ><%=right.comments%><i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
                             <span ><%=right.views%><i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
                         </div>
                     </div>
@@ -133,7 +125,7 @@
 <footer class="page-footer font-small ">
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <div class="text-center py-3">© 2018 Copyright:
         <a href="/">  ytgallery.com</a>
     </div>
     <!-- Copyright -->
@@ -184,49 +176,66 @@
                             i=i+2;
 
                             sortedContentDom +=
-                                `<div class="row" style="margin-top: 9px;">
-                                    <div class="col-md-4 event-item red" >`;
+                                `<div class="row" style="">
+                                    <div class="col-md-4 event-item " >`;
 
                             if(left != undefined){
-                                sortedContentDom += `<iframe allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/${left.videoId}">
-                                        </iframe>
-                                        <!--<img src="https://img.youtube.com/vi/${left.url.substr(left.url.length-11) }/0.jpg" style="width: 246px;" />-->
-                                        <p class="font-weight-bold">${left.title}</p>
-                                        <p>${left.description}</p>
-                                        <span >${left.likes}<i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
-                                        <span >${left.dislikes}<i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
-                                        <span >${left.comments}<i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
-                                        <span >${left.views}<i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>              `;
+                                sortedContentDom += `<div class="main card">
+                    <div class="holder">
+                        <iframe allowfullscreen  src="https://www.youtube.com/embed/${left.url.substr(left.url.length-11)}">
+                        </iframe>
+                        <div class="bar">
+                            <span >${left.likes}<i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
+                            <span >${left.dislikes}<i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
+                            <span >${left.comments}<i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
+                            <span >${left.views}<i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
+                        </div>
+                    </div>
+                </div>`;
                             }
 
                             sortedContentDom += `</div>
-                                                <div class="col-md-4 event-item purple" >`;
+                                                <div class="col-md-4 event-item " >`;
 
 
                             if(mid !== undefined){
-                                sortedContentDom += `<iframe allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/${mid.videoId}">
-                </iframe>
-                <p class="font-weight-bold">${mid.title}</p>
-                <p>${mid.description}</p>
-                <span >${mid.likes}<i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
-                <span >${mid.dislikes}<i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
-                <span >${mid.comments}<i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
-                <span >${mid.views}<i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>`;
+                                sortedContentDom += `
+
+                                <div class="main card">
+                                    <div class="holder">
+                                        <iframe  allowfullscreen  src="https://www.youtube.com/embed/${mid.url.substr(mid.url.length-11)}">
+                                        </iframe>
+                                        <div class="bar">
+                                            <span >${mid.likes}<i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
+                                            <span >${mid.dislikes}<i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
+                                            <span >${mid.comments}<i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
+                                            <span >${mid.views}<i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
                             }
 
                             sortedContentDom += `</div>
-                                                <div class="col-md-4 event-item orange" >`;
+                                                <div class="col-md-4 event-item " >`;
 
                             if(right != undefined){
                                 sortedContentDom += `
-                <iframe  allowfullscreen width="420" height="345" src="https://www.youtube.com/embed/${right.videoId}">
-                </iframe>
-                <p class="font-weight-bold">${right.title}</p>
-                <p>${right.description}</p>
-                <span >${right.likes}<i class="fa fa-thumbs-up fa-1x cyan-text pr-3"></i></span>
-                <span >${right.dislikes}<i class="fa fa-thumbs-down fa-1x  red-text pr-3"></i></span>
-                <span >${right.comments}<i class="fa fa-comment purple-text fa-1x  pr-3"></i></span>
-                <span >${right.views}<i class="fa fa-eye orange-text fa-1x  pr-3"></i></span>`;
+
+                                 <div class="main card">
+                                    <div class="holder">
+                                        <iframe  allowfullscreen  src="https://www.youtube.com/embed/${right.url.substr(right.url.length-11)}">
+                                        </iframe>
+                                        <div class="bar">
+                                            <span >${right.likes}<i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
+                                            <span >${right.dislikes}<i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
+                                            <span >${right.comments}<i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
+                                            <span >${right.views}<i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                `;
                             }
 
                             sortedContentDom += `</div></div>`;
@@ -307,8 +316,8 @@
         left:0;
         width:100%;
         height:30px;
-        opacity: 0.75;
-        background-image: linear-gradient(to top, rgba(95,186,125,0.9) 0%, rgba(235,68,93,.75) 100%);
+        opacity: 1.15;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(235,68,93,.75) 100%);
         color: white;
         font-size: 12px;
         font-weight: bolder;
