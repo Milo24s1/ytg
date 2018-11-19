@@ -128,7 +128,7 @@
 
             }
         });
-        $('.yt-card_play').click(function () {
+        $('body').on('click', '.yt-card_play', function () {
             var src = $(this).data('src'), $iframe = $('<iframe></iframe>'), $wrap = $(this).closest('.yt-card');
             $iframe.attr('src', src);
             $wrap.prepend($iframe);
