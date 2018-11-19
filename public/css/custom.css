@@ -1,64 +1,228 @@
-body{
-    font-family: 'Poppins', sans-serif !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@import url(//cdn.rawgit.com/rtaibah/dubai-font-cdn/master/dubai-font.css);
+
+body {
+    font-family: 'Dubai', sans-serif;
 }
 
-thead{
-    background-color: #020843 !important;
-}
-footer ,thead{
-    background-color: rgba(235,68,93,.75) !important;
+.navbar {
+    box-shadow: 0px 3px 23px rgba(0,0,0,0.58);
+    background-color: #ffffff;
+    z-index: 99;
 }
 
-.logo{
-    height: 44px;
-    color: rgb(249, 162, 34);
+.navbar-brand img {
+    height: 48px;
+    width: 48px;
+    position: relative;
+    top: -2px;
+}
+
+.navbar-brand {
     font-size: 30px;
-    font-weight: bold;
-    text-shadow: 1px 1px 5px rgb(249, 162, 34);
+    color: #343536;
+    text-shadow: 0px 1px 3px rgba(0,0,0,0.16);
 }
 
-.event-item{
-    padding-top: 20px;
+.navbar-brand:hover {
+    color: #343536;
 }
-.event-item > iframe {
-    width: 246px;
-    height: 184.5px;
-}
-.main{
-    position: relative;
-    /*box-shadow: 5px 5px 5px 5px rgba(0,0,0,.75);*/
-    border-radius: 12px;
-    /*rgba(235,68,93,.75)*/
 
+.navbar-brand span {
+    font-size: 15px;
+    color: #fc5c63;
+    text-shadow: none;
+    padding: 0 25px;
 }
-.holder{
+
+.navbar-nav {
+    margin-right: 50px;
+    margin-left: auto;
+    font-size: 20px;
+}
+
+.navbar-nav li {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.navbar-nav a {
+    color: #3e4041;
+}
+
+footer {
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 68px;
+    background-color: #fc5c63;
+}
+
+.yt-content {
+    margin-top: 90px;
+}
+
+.yt-event-row {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.yt-event-row h1, .yt-event-row h3 {
+    text-align: right;
+    font-size: 30px;
+    color: #535455;
+}
+
+.yt-event-row h1 a, .yt-event-row h3 a {
+    color: #535455;
+}
+
+.yt-card {
+    height: 364px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 16px rgba(0,0,0,0.42);
+    background: no-repeat center center;
+    background-size: cover;
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;
-    border-radius: 12px;
+    overflow: hidden;
 }
-iframe{
-    border: 1px grey;
+
+.yt-card_top {
     position: absolute;
     top: 0;
+    right: 0;
     left: 0;
+    font-size: 12px;
+    color: #fff;
+    padding: 15px 15px 30px;
+    background: url(/img/cardtopbg.svg) top center no-repeat;
+    background-size: 100% 100%;
+    text-align: right;
+}
+
+.yt-card_bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    color: #fff;
+    padding: 0 15px 10px;
+}
+
+.yt-card_bottom a{
+    color: #fff;
+}
+
+.yt-card_bottom p{
+    margin-bottom: 0;
+}
+
+.yt-card_bottom span{
+    padding-right: 30px;
+}
+
+.yt-card_play {
+    width: 88px;
+    height: 61px;
+    box-shadow: 0px 3px 7px rgba(0,0,0,0.16);
+    background: url(/img/play.png) no-repeat 50% 50%, linear-gradient(180deg, rgba(18,17,17,0.10) 0%, rgba(96, 96, 96, 0.3) 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -44px;
+    margin-top: -30px;
+    display: block;
+    border-radius: 44px;
+}
+.yt-icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url(/img/icons.png) no-repeat 0 0;
+    vertical-align: middle;
+}
+
+.yt-icon-comment {
+    background-position: 0px 0px;
+}
+
+.yt-icon-dislike {
+    background-position: -32px 0px;
+}
+
+.yt-icon-like {
+    background-position: -64px 0px;
+}
+
+.yt-icon-view {
+    background-position: -96px 0px;
+}
+
+.yt-icon-comment_white {
+    background-position: 0px -32px;
+}
+
+.yt-icon-dislike_white {
+    background-position: -32px -32px;
+}
+
+.yt-icon-like_white {
+    background-position: -64px -32px;
+}
+
+.yt-icon-view_white {
+    background-position: -96px -32px;
+}
+
+.yt-icon-user_white {
+    width: 44px;
+    height: 44px;
+    background: url(/img/user.png) no-repeat 0 0;
+}
+
+.flex-viewport {
+    padding: 30px;
+    margin: -30px;
+}
+
+.flex-next, .flex-prev {
+    right: -50px !important;
+    opacity: 1 !important;
+    filter: alpha(opacity=1);
+    width: 67px !important;
+    height: 67px !important;
+    -webkit-border-radius: 34px;
+    -moz-border-radius: 34px;
+    border-radius: 34px;
+    box-shadow: 0px 3px 7px rgba(0,0,0,0.16);
+    font-size: 0;
+    text-shadow: none;
+}
+
+.flex-next {
+    right: -105px !important;
+    background: url(/img/next.png) no-repeat 37% 50% #fc5c63;
+    background-size: 50%;
+}
+
+.flex-prev {
+    left: -105px !important;
+    background: url(/img/prev.png) no-repeat 63% 50% #fc5c63;
+    background-size: 50%;
+}
+
+a.flex-prev:before, a.flex-next:before {
+    content: none !important;
+}
+
+.flexslider .slides > li:first-child {
+    display: block;
+    -webkit-backface-visibility: visible;
+}
+
+.yt-card iframe {
+    border: none;
     width: 100%;
     height: 100%;
-    border-radius: 12px;
-}
-.bar{
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:30px;
-    opacity: 0.75;
-    background-image: linear-gradient(to top, rgba(95,186,125,0.9) 0%, rgba(235,68,93,.75) 100%);
-    color: white;
-    font-size: 12px;
-    font-weight: bolder;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
 }
