@@ -19,119 +19,106 @@
 
 </head>
 <body>
-<nav class="navbar navbar-dark ">
-    <!--<a class="navbar-brand" href="/">-->
-        <!--<div class="logo">YTGallery</div>-->
-    <!--</a>-->
-    <a  class="float-right" href="/"><img src="/img/logo.png" height="55px"></a>
-</nav>
-
-<div style="height: 10vh">
-</div>
-<div >
-    <div class="text-center ">
-        <h1 class="animated fadeIn mb-4 font-weight-bold shadow-sm"><%=videos[0].owner%> Videos</h1>
-
+    <div class="yt-navbar">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#yt-header-navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="yt-header-navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contactus">اتصل بنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">البحث</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/network">الرئيسية</a>
+                    </li>
+                </ul>
+            </div>
+            <a class="navbar-brand" href="/">الكرييتڤ<span>متحف الاعلانات</span><img src="/img/logo.png" /></a>
+        </nav>
     </div>
-
-</div>
-<div>
-    <label class="font-weight-bold">SORT BY</label>
-    <select>
-        <option value="0">---</option>
-        <option value="1">Release date (oldest)</option>
-        <option value="2">Release date (newset)</option>
-        <option value="3">Most Likes</option>
-        <option value="4">Least Likes</option>
-        <option value="5">Most Dislikes</option>
-        <option value="6">Least Dislikes</option>
-        <option value="7">Most Views</option>
-        <option value="8">Least Views</option>
-    </select>
-    <input id="currentchannelId" type="hidden" value="<%= channelId %>">
-</div>
-
-<div class="row content ">
-    <div class="col-md-1 " ></div>
-    <div class="col-md-10 ">
-
-        <% for(var i=0;i<videos.length;i++){
-            var left = videos[i];
-            var mid = videos[i+1];
-            var right = videos[i+2];
-            i=i+2;
-        %>
-        <div class="row" style="">
-            <div class="col-md-4 event-item" >
-                <%if(left != undefined){%>
-                <div class="main card">
-                    <div class="holder">
-                        <iframe allowfullscreen  src="https://www.youtube.com/embed/<%=left.url.substr(left.url.length-11)%>">
-                        </iframe>
-                        <div class="bar">
-                            <span ><%=left.likes%><i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
-                            <span ><%=left.dislikes%><i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
-                            <span ><%=left.comments%><i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
-                            <span ><%=left.views%><i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
+    <div class="container-fluid yt-content">
+        <div class="yt-events">
+            <div class="row">
+                <div class="col-12">
+                    <div class="yt-sort pull-left">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                ---
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" data-value="0">---</a>
+                                <a class="dropdown-item" href="#" data-value="1">Release date (oldest)</a>
+                                <a class="dropdown-item" href="#" data-value="2">Release date (newset)</a>
+                                <a class="dropdown-item" href="#" data-value="3">Most Likes</a>
+                                <a class="dropdown-item" href="#" data-value="4">Least Likes</a>
+                                <a class="dropdown-item" href="#" data-value="5">Most Dislikes</a>
+                                <a class="dropdown-item" href="#" data-value="6">Least Dislikes</a>
+                                <a class="dropdown-item" href="#" data-value="7">Most Views</a>
+                                <a class="dropdown-item" href="#" data-value="8">Least Views</a>
+                            </div>
                         </div>
+                        ترتيب حسب
                     </div>
+                    <h1 class="text-right"><%=videos[0].owner%> <i class="yt-icon yt-icon-user"></i></h1>
                 </div>
-                <%}%>
             </div>
-            <div class="col-md-4 event-item " >
-                <%if(mid !== undefined){%>
-                <div class="main card">
-                    <div class="holder">
-                        <iframe allowfullscreen  src="https://www.youtube.com/embed/<%=mid.url.substr(mid.url.length-11)%>">
-                        </iframe>
-                        <div class="bar">
-                            <span ><%=mid.likes%><i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
-                            <span ><%=mid.dislikes%><i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
-                            <span ><%=mid.comments%><i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
-                            <span ><%=mid.views%><i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul>
+                        <% for(var i=0;i<videos.length;i++){ %>
+                            <li>
+                                <div class="yt-card" style="background-image: url(https://img.youtube.com/vi/<%= videos[i].url.substr(videos[i].url.length-11) %>/0.jpg)">
+                                    <div class="yt-card_top">
+                                        <p class="pull-left"><%=videos[i].addedDate.getDate()%>/<%=videos[i].addedDate.getMonth() + 1%>/<%=videos[i].addedDate.getFullYear()%></p>
+                                        <p><%=videos[i].title%></p>
+                                    </div>
+                                    <div class="yt-card_bottom">
+                                        <p class="text-right">
+                                            <a href="/channel/<%=videos[i].channelId%>">
+                                                <%=videos[i].owner%>
+                                                <i class="yt-icon yt-icon-user_white"></i>
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <span>
+                                                <i class="yt-icon yt-icon-like_white"></i>
+                                                <%=videos[i].likes%>
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-dislike_white"></i>
+                                                <%=videos[i].dislikes%>
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-comment_white"></i>
+                                                <%=videos[i].comments%>
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-view_white"></i>
+                                                <%=videos[i].views%>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <a class="yt-card_play" data-src="https://www.youtube.com/embed/<%= videos[i].videoId%>?autoplay=1">
+                                    </a>
+                                </div>
+                            </li>
+                        <% } %>
+                    </ul>
                 </div>
-                <%}%>
-            </div>
-            <div class="col-md-4 event-item " >
-                <%if(right != undefined){%>
-                <div class="main card">
-                    <div class="holder">
-                        <iframe  allowfullscreen  src="https://www.youtube.com/embed/<%=right.url.substr(right.url.length-11)%>">
-                        </iframe>
-                        <div class="bar">
-                            <span ><%=right.likes%><i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
-                            <span ><%=right.dislikes%><i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
-                            <span ><%=right.comments%><i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
-                            <span ><%=right.views%><i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <%}%>
             </div>
         </div>
 
-        <%}%>
+
+
+
+
+
     </div>
-    <div class="col-md-1 "></div>
-</div>
-
-
-
-<div style="height: 10vh">
-</div>
-<!-- Footer -->
-<footer class="page-footer font-small ">
-
-    <!-- Copyright -->
-    <div class="text-center py-3">© 2018 Copyright:
-        <a href="/">  ytgallery.com</a>
-    </div>
-    <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+    <footer>© 2018 - AL Creative All rights reserved</footer>
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -144,186 +131,68 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
 
 <script>
-    $(window).bind("load", function() {
-        // $('body').removeClass('preloader');
-    });
-
     $(document).ready(function (e) {
-
-        var currentchannelId = $("#currentchannelId").val();
-
-
-        $('select').on('change', function() {
-            if(this.value>0){
-
+        $('.yt-sort .dropdown-item').on('click', function() {
+            var $el = $(this), val = $el.data('value'), chan = '<%= channelId %>';
+            if (val > 0) {
+                $el.closest('.dropdown').find('.btn').text($el.text());
                 $.ajax({
-
-                    'url':'/getChannelVideo',
-                    'method':'POST',
+                    'url': '/getChannelVideo',
+                    'method': 'POST',
                     dataType: 'JSON',
                     data: {
-                        sort : this.value,
-                        channelId: currentchannelId
+                        sort : val,
+                        channelId: chan
                     },
-                    success: function (data) {
-
-                        var videos = data;
-                        var sortedContentDom = ``;
-                        for(var i=0;i<videos.length;i++){
-                            var left = videos[i];
-                            var mid = videos[i+1];
-                            var right = videos[i+2];
-                            i=i+2;
-
-                            sortedContentDom +=
-                                `<div class="row" style="">
-                                    <div class="col-md-4 event-item " >`;
-
-                            if(left != undefined){
-                                sortedContentDom += `<div class="main card">
-                    <div class="holder">
-                        <iframe allowfullscreen  src="https://www.youtube.com/embed/${left.url.substr(left.url.length-11)}">
-                        </iframe>
-                        <div class="bar">
-                            <span >${left.likes}<i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
-                            <span >${left.dislikes}<i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
-                            <span >${left.comments}<i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
-                            <span >${left.views}<i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
-                        </div>
-                    </div>
-                </div>`;
-                            }
-
-                            sortedContentDom += `</div>
-                                                <div class="col-md-4 event-item " >`;
-
-
-                            if(mid !== undefined){
-                                sortedContentDom += `
-
-                                <div class="main card">
-                                    <div class="holder">
-                                        <iframe  allowfullscreen  src="https://www.youtube.com/embed/${mid.url.substr(mid.url.length-11)}">
-                                        </iframe>
-                                        <div class="bar">
-                                            <span >${mid.likes}<i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
-                                            <span >${mid.dislikes}<i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
-                                            <span >${mid.comments}<i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
-                                            <span >${mid.views}<i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
-                                        </div>
+                    success: function (videos) {
+                        var html = ``;
+                        for (var i = 0;i < videos.length; i++) {
+                            var video = videos[i], addedDate = new Date(video.addedDate);
+                            html += `<li>
+                                <div class="yt-card" style="background-image: url(https://img.youtube.com/vi/${video.url.substr(video.url.length-11)}/0.jpg)">
+                                    <div class="yt-card_top">
+                                        <p class="pull-left">${addedDate.getDate()}/${addedDate.getMonth() + 1}/${addedDate.getFullYear()}</p>
+                                        <p>${video.title}</p>
                                     </div>
-                                </div>
-                                `;
-                            }
-
-                            sortedContentDom += `</div>
-                                                <div class="col-md-4 event-item " >`;
-
-                            if(right != undefined){
-                                sortedContentDom += `
-
-                                 <div class="main card">
-                                    <div class="holder">
-                                        <iframe  allowfullscreen  src="https://www.youtube.com/embed/${right.url.substr(right.url.length-11)}">
-                                        </iframe>
-                                        <div class="bar">
-                                            <span >${right.likes}<i class="fa fa-thumbs-o-up fa-1x white-text pr-3"></i></span>
-                                            <span >${right.dislikes}<i class="fa fa-thumbs-o-down fa-1x  white-text pr-3"></i></span>
-                                            <span >${right.comments}<i class="fa fa-comment-o white-text fa-1x  pr-3"></i></span>
-                                            <span >${right.views}<i class="fa fa-eye white-text fa-1x  pr-3"></i></span>
-                                        </div>
+                                    <div class="yt-card_bottom">
+                                        <p class="text-right">
+                                            <a href="/channel/${video.channelId}">
+                                                ${video.owner}
+                                                <i class="yt-icon yt-icon-user_white"></i>
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <span>
+                                                <i class="yt-icon yt-icon-like_white"></i>
+                                                ${video.likes}
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-dislike_white"></i>
+                                                ${video.dislikes}
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-comment_white"></i>
+                                                ${video.comments}
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-view_white"></i>
+                                                ${video.views}
+                                            </span>
+                                        </p>
                                     </div>
+                                    <a class="yt-card_play" data-src="https://www.youtube.com/embed/${video.videoId}?autoplay=1">
+                                    </a>
                                 </div>
-
-                `;
-                            }
-
-                            sortedContentDom += `</div></div>`;
-
-
-
-
-                        } // end of for loop
-
-                        $(".col-md-10").html(sortedContentDom);
-
-
-
-
-
-
-
-
+                            </li>`;
+                        }
+                        $(".yt-events ul").html(html);
                     },
                     error: function(xhr){
 
                     }
                 });
-
             }
-
-
         });
-
     });
 </script>
-<style>
-    .preloader {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 999;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-        background: #333 url('http://files.mimoymima.com/images/loading.gif') no-repeat center center;
-    }
-
-    .content {
-        margin: 10px;
-        text-align:center;
-    }
-
-    .event-item > iframe {
-        width: 246px;
-        height: 184.5px;
-    }
-    .main{
-        position: relative;
-        /*box-shadow: 5px 5px 5px 5px rgba(0,0,0,.75);*/
-        border-radius: 12px;
-        /*rgba(235,68,93,.75)*/
-
-    }
-    .holder{
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 */
-        height: 0;
-        border-radius: 12px;
-    }
-    iframe{
-        border: 1px grey;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 12px;
-    }
-    .bar{
-        position:absolute;
-        bottom:0;
-        left:0;
-        width:100%;
-        height:30px;
-        opacity: 1.15;
-        background-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(235,68,93,.75) 100%);
-        color: white;
-        font-size: 12px;
-        font-weight: bolder;
-        border-bottom-right-radius: 12px;
-        border-bottom-left-radius: 12px;
-    }
-
-</style>
 </body>

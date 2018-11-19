@@ -181,6 +181,14 @@ footer {
     background: url(/img/user.png) no-repeat 0 0;
 }
 
+.yt-icon-user {
+    width: 58px;
+    height: 58px;
+    background: url(/img/userbk.png) no-repeat center center;
+    border-radius: 29px;
+    border: 2px solid #000;
+}
+
 .flex-viewport {
     padding: 30px;
     margin: -30px;
@@ -225,4 +233,45 @@ a.flex-prev:before, a.flex-next:before {
     border: none;
     width: 100%;
     height: 100%;
+}
+
+.yt-events {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.yt-events h1 {
+    font-size: 27px;
+}
+
+.yt-events ul {
+    display: block;
+    font-size: 0;
+    margin: 0 -20px;
+    padding: 0;
+}
+
+.yt-events ul li {
+    list-style: none;
+    margin: 0;
+    padding: 30px 20px;
+    width: 33.33%;
+    float: left;
+}
+
+.yt-sort .dropdown{
+    display: inline-block;
+}
+
+.yt-sort .dropdown .btn{
+    background: url(/img/dropdown.png) no-repeat 5px 40% #fc5c63;
+    padding: 10px 15px 10px 35px;
+    color: #fff;
+    border-radius: 9px;
+    box-shadow: none;
+    text-transform: none;
+}
+
+.yt-sort .dropdown .dropdown-toggle:after{
+    content: none;
 }
