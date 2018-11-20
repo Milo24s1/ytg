@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-12">
                     <h1 class="text-right">Video name <span class="pull-left">20/11/2018</span></h1>
-                    <iframe src="https://www.youtube.com/embed/JknUt2dSzPM">
+                    <iframe src="https://www.youtube.com/embed/JknUt2dSzPM?autoplay=1" allow="autoplay">
                     </iframe>
                     <div class="yt-view_info">
                         <p class="text-right pull-right">
@@ -185,7 +185,7 @@
             }
         });
         $('body').on('click', '.yt-card_play', function () {
-            var src = $(this).data('src'), $iframe = $('<iframe></iframe>'), $wrap = $(this).closest('.yt-card');
+            var src = $(this).data('src'), $iframe = $('<iframe allow="autoplay"></iframe>'), $wrap = $(this).closest('.yt-card');
             $iframe.attr('src', src);
             $wrap.prepend($iframe);
             $(this).remove();

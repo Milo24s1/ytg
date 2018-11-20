@@ -1,7 +1,7 @@
 @import url(//cdn.rawgit.com/rtaibah/dubai-font-cdn/master/dubai-font.css);
 
 body {
-    font-family: 'Dubai', sans-serif;
+    font-family: 'Dubai-Medium', sans-serif;
 }
 
 .navbar {
@@ -59,7 +59,6 @@ footer {
 
 .yt-content {
     margin-top: 90px;
-    min-height: calc(100vh - 90px - 68px);
 }
 
 .yt-event-row {
@@ -72,6 +71,7 @@ footer {
     font-size: 30px;
     color: #535455;
     z-index: 1;
+    position: relative;
 }
 
 .yt-event-row h1 a, .yt-event-row h3 a {
@@ -425,7 +425,7 @@ a.flex-prev:before, a.flex-next:before {
         padding-right: 15px;
     }
     .flex-next, .flex-prev {
-        display: none;
+        display: none !important;
     }
     .yt-events, .yt-view {
         padding-left: 15px;
