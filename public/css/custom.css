@@ -256,7 +256,8 @@ a.flex-prev:before, a.flex-next:before {
     margin: 0;
     padding: 30px 20px;
     width: 33.33%;
-    float: left;
+    float: right;
+    min-width: 440px;
 }
 
 .yt-sort .dropdown{
@@ -274,4 +275,167 @@ a.flex-prev:before, a.flex-next:before {
 
 .yt-sort .dropdown .dropdown-toggle:after{
     content: none;
+}
+
+.navbar-toggler {
+    position: relative;
+    z-index: 99;
+}
+
+.navbar-toggler-icon {
+    position: relative;
+    background: transparent;
+    width: 40px;
+    height: 3px;
+    border-radius: 2px;
+    vertical-align: middle;
+    transition: background 0s ease 0.3s;
+}
+
+.navbar-toggler-icon:after, .navbar-toggler-icon:before {
+    position: absolute;
+    content: " ";
+    display: block;
+    background: #fff;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.navbar-toggler-icon:after{
+    transform: rotate(45deg);
+    top: 0;
+    transition: top 0.3s ease 0s, transform 0.3s ease 0.3s;
+}
+
+.navbar-toggler-icon:before{
+    transform: rotate(-45deg);
+    bottom: 0;
+    transition: bottom 0.3s ease 0s, transform 0.3s ease 0.3s;
+}
+
+.collapsed .navbar-toggler-icon:after {
+    transform: rotate(0deg);
+    top: -10px;
+    transition: top 0.3s ease 0.3s, transform 0.3s ease 0s;
+    background: #fc5c63;
+}
+
+.collapsed .navbar-toggler-icon:before {
+    transform: rotate(0deg);
+    bottom: -10px;
+    transition: bottom 0.3s ease 0.3s, transform 0.3s ease 0s;
+    background: #fc5c63;
+}
+
+.collapsed .navbar-toggler-icon {
+    background: #fc5c63;
+}
+
+.yt-navbar-copyright, .yt-navbar-logo {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .yt-navbar .navbar-collapse:before {
+        display: block;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 60%;
+        background: #fc5c63;
+        z-index: 0;
+    }
+
+    .yt-navbar .navbar-collapse:after {
+        display: block;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: url(/img/menubg.png) no-repeat center center;
+        background-size: contain;
+        z-index: 1;
+    }
+
+    .yt-navbar .navbar-collapse {
+        position: fixed;
+        right: 100%;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        transition: right 0.3s ease;
+        justify-content: center;
+        display: flex;
+        padding-right: 50%;
+        z-index: 2;
+        backdrop-filter: blur(5px);
+    }
+    .yt-navbar .navbar-collapse.show {
+        right: 0;
+    }
+    .navbar-nav {
+        justify-content: center;
+        text-align: center;
+        align-self: center;
+        z-index: 2;
+        margin: 0 auto;
+    }
+    .navbar-nav li a {
+        color: #fff;
+    }
+    .yt-navbar-copyright {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 57%;
+        color: #fff;
+        font-size: 1.6vw;
+        display: block;
+        z-index: 3;
+        text-align: center;
+    }
+    .yt-navbar-logo {
+        position: absolute;
+        display: block;
+        right: 59%;
+        top: 17px;
+        width: 40px;
+        height: 40px;
+        background: url(/img/logo.png) no-repeat center center;
+        background-size: 160%;
+        z-index: 2;
+    }
+    .yt-event-row {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .flex-next, .flex-prev {
+        display: none;
+    }
+    .yt-events {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .yt-events ul li{
+        width: 440px;
+        max-width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .navbar-brand {
+        font-size: 18px;
+    }
+
+    .navbar-brand span {
+        font-size: 10px;
+        padding: 0 10px
+    }
 }
