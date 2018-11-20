@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>YTGallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <%- include('partial/menu') %>
+    <div class="container-fluid yt-content">
+        <div class="yt-events">
+            <div class="row">
+                <div class="col-12">
+                    <div class="yt-sort pull-left">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                ---
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" data-value="0">---</a>
+                                <a class="dropdown-item" href="#" data-value="1">Release date (oldest)</a>
+                                <a class="dropdown-item" href="#" data-value="2">Release date (newset)</a>
+                                <a class="dropdown-item" href="#" data-value="3">Most Likes</a>
+                                <a class="dropdown-item" href="#" data-value="4">Least Likes</a>
+                                <a class="dropdown-item" href="#" data-value="5">Most Dislikes</a>
+                                <a class="dropdown-item" href="#" data-value="6">Least Dislikes</a>
+                                <a class="dropdown-item" href="#" data-value="7">Most Views</a>
+                                <a class="dropdown-item" href="#" data-value="8">Least Views</a>
+                            </div>
+                        </div>
+                        ترتيب حسب
+                    </div>
+                    <div class="yt-search">
+                        <input type="text" class="form-control" placeholder="بحث" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul>
+                        <% for(var i=0;i<videos.length;i++){ %>
+                            <li>
+                                <div class="yt-card" style="background-image: url(https://img.youtube.com/vi/<%= videos[i].url.substr(videos[i].url.length-11) %>/0.jpg)">
+                                    <div class="yt-card_top">
+                                        <p class="pull-left"><%=videos[i].addedDate.getDate()%>/<%=videos[i].addedDate.getMonth() + 1%>/<%=videos[i].addedDate.getFullYear()%></p>
+                                        <p><%=videos[i].title%></p>
+                                    </div>
+                                    <div class="yt-card_bottom">
+                                        <p class="text-right">
+                                            <a href="/channel/<%=videos[i].channelId%>">
+                                                <%=videos[i].owner%>
+                                                <i class="yt-icon yt-icon-user_white"></i>
+                                            </a>
+                                        </p>
+                                        <p>
+                                                <span>
+                                                    <i class="yt-icon yt-icon-like_white"></i>
+                                                    <%=videos[i].likes%>
+                                                </span>
+                                            <span>
+                                                    <i class="yt-icon yt-icon-dislike_white"></i>
+                                                <%=videos[i].dislikes%>
+                                                </span>
+                                            <span>
+                                                    <i class="yt-icon yt-icon-comment_white"></i>
+                                                <%=videos[i].comments%>
+                                                </span>
+                                            <span>
+                                                    <i class="yt-icon yt-icon-view_white"></i>
+                                                <%=videos[i].views%>
+                                                </span>
+                                        </p>
+                                    </div>
+                                    <a class="yt-card_play" data-src="https://www.youtube.com/embed/<%= videos[i].videoId%>?autoplay=1">
+                                    </a>
+                                </div>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+    <%- include('partial/footer') %>
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
+
+<script>
+    $(document).ready(function (e) {
+        // TODO Change function to search endpoint
+        // TODO Provide search text to endpoint
+        $('.yt-sort .dropdown-item').on('click', function() {
+            var $el = $(this), val = $el.data('value'), event = '<%= event._id%>';
+            if (val > 0) {
+                $el.closest('.dropdown').find('.btn').text($el.text());
+                $.ajax({
+                    'url': '/getEventVideo',
+                    'method': 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        sort : val,
+                        eventId: event
+                    },
+                    success: function (videos) {
+                        var html = ``;
+                        for (var i = 0;i < videos.length; i++) {
+                            var video = videos[i], addedDate = new Date(video.addedDate);
+                            html += `<li>
+                                <div class="yt-card" style="background-image: url(https://img.youtube.com/vi/${video.url.substr(video.url.length-11)}/0.jpg)">
+                                    <div class="yt-card_top">
+                                        <p class="pull-left">${addedDate.getDate()}/${addedDate.getMonth() + 1}/${addedDate.getFullYear()}</p>
+                                        <p>${video.title}</p>
+                                    </div>
+                                    <div class="yt-card_bottom">
+                                        <p class="text-right">
+                                            <a href="/channel/${video.channelId}">
+                                                ${video.owner}
+                                                <i class="yt-icon yt-icon-user_white"></i>
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <span>
+                                                <i class="yt-icon yt-icon-like_white"></i>
+                                                ${video.likes}
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-dislike_white"></i>
+                                                ${video.dislikes}
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-comment_white"></i>
+                                                ${video.comments}
+                                            </span>
+                                            <span>
+                                                <i class="yt-icon yt-icon-view_white"></i>
+                                                ${video.views}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <a class="yt-card_play" data-src="https://www.youtube.com/embed/${video.videoId}?autoplay=1">
+                                    </a>
+                                </div>
+                            </li>`;
+                        }
+                        $(".yt-events ul").html(html);
+                    },
+                    error: function(xhr){
+
+                    }
+                });
+            }
+        });
+        $('body').on('click', '.yt-card_play', function () {
+            var src = $(this).data('src'), $iframe = $('<iframe></iframe>'), $wrap = $(this).closest('.yt-card');
+            $iframe.attr('src', src);
+            $wrap.prepend($iframe);
+            $(this).remove();
+            return false;
+        });
+    });
+</script>
+</body>
